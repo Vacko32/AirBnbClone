@@ -16,7 +16,7 @@ const Navbar = () => {
                     items-center
                     justify-between
                     flex-row
-                    gap-2
+                    gap-3
                     md:gap-0"
                     > 
                     <Logo />
