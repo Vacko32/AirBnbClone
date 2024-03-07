@@ -2,9 +2,11 @@
 import { IoIosMenu } from "react-icons/io";
 import Avatar from "../Avatar";
 import { useCallback, useState } from "react";
+import MenuItem from "./MenuItem";
 
 const UserMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
+
 
 
     const toogleOpen = useCallback(() => {
@@ -65,7 +67,16 @@ const UserMenu = () => {
                 top-12
                 text-sm">
                     <div className="flex flex-col cursor-pointer">
-                        dfdf
+                        <>
+                            <MenuItem 
+                            onClick={() => {}}
+                            label="Login"
+                            />
+                            <MenuItem 
+                            onClick={() => {}}
+                            label="Sign Up"
+                            />
+                        </>
                     </div>
             </div>
             )}
