@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useCallback } from "react";
 import { useState, useEffect } from "react";
@@ -7,77 +7,68 @@ import { TiThLarge } from "react-icons/ti";
 import Button from "../Button";
 
 interface ModalProps {
-    isOpen?: boolean;
-    onClose: () => void;
-    onSubmit: () => void;
-    title?: string;
-    body?: React.ReactElement;
-    footer?: React.ReactElement;
-    actionLabel: string;
-    disabled?: boolean;
-    secondaryAction?: () => void;
-    secondaryLabel?: string;
+  isOpen?: boolean;
+  onClose: () => void;
+  onSubmit: () => void;
+  title?: string;
+  body?: React.ReactElement;
+  footer?: React.ReactElement;
+  actionLabel: string;
+  disabled?: boolean;
+  secondaryAction?: () => void;
+  secondaryLabel?: string;
 }
-
 
 const Modal: React.FC<ModalProps> = ({
-    isOpen,
-    onClose,
-    onSubmit,
-    title,
-    body,
-    footer,
-    actionLabel,
-    disabled,
-    secondaryAction,
-    secondaryLabel
-}
-) => {
+  isOpen,
+  onClose,
+  onSubmit,
+  title,
+  body,
+  footer,
+  actionLabel,
+  disabled,
+  secondaryAction,
+  secondaryLabel,
+}) => {
+  const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => {
+    setShowModal(isOpen || false);
+  }, [isOpen]);
 
-    const [showModal, setShowModal] = useState(false);
-
-    useEffect(() => {
-        setShowModal(isOpen || false);
-    }, [isOpen]);
-
-    const handleClose = useCallback(() => {
-        if (disabled) {
-            return;
-        }
-       setShowModal(false);
-       setTimeout(() => {
-              onClose();
-         }, 300);
-    }, [onClose, disabled]); 
-
-    const handleSumbit = useCallback(() => {
-        if (disabled) {
-            return;
-        }
-        onSubmit
-
-
-
-    }, [disabled, onSubmit]);
-
-
-    const handleSecondaryAction = useCallback(() => {
-        if (disabled || !secondaryAction) {
-            return;
-        }
-        secondaryAction();
-    }, [secondaryAction, disabled]);
-
-    if (!isOpen){
-        return null;
+  const handleClose = useCallback(() => {
+    if (disabled) {
+      return;
     }
+    setShowModal(false);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }, [disabled, onClose]);
 
+  const handleSumbit = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+    onSubmit;
+  }, [disabled, onSubmit]);
 
+  const handleSecondaryAction = useCallback(() => {
+    if (disabled || !secondaryAction) {
+      return;
+    }
+    secondaryAction();
+  }, [secondaryAction, disabled]);
 
-    return (
-        <>
-            <div className="
+  if (!isOpen) {
+    return null;
+  }
+
+  return (
+    <>
+      <div
+        className="
             justify-center
             items-center
             flex
@@ -91,9 +82,10 @@ const Modal: React.FC<ModalProps> = ({
             bg-neutral-800/70
             
             
-            ">
-                <div
-                className="
+            "
+      >
+        <div
+          className="
                 relative
                 w-full
                 md:w-4/6
@@ -105,20 +97,19 @@ const Modal: React.FC<ModalProps> = ({
                 lg:h-auto
                 md:h-auto
                 "
-                
-                >
-                {/* CONTENT */}
-                <div
-                className={`
+        >
+          {/* CONTENT */}
+          <div
+            className={`
                 translate
                 duration-300
                 h-full
-                ${showModal ? 'translate-y-0' : 'translate-y-full'}
-                ${showModal ? 'opacity-100' : 'opacity-0'}
+                ${showModal ? "translate-y-0" : "translate-y-full"}
+                ${showModal ? "opacity-100" : "opacity-0"}
                 `}
-                >
-                    <div
-                    className="
+          >
+            <div
+              className="
                     transalate
                     h-full
                     lg:h-auto
@@ -134,10 +125,10 @@ const Modal: React.FC<ModalProps> = ({
                     outline-none
                     focus:outline-none
                     "
-                    >
-                    {/* HEADER */}
-                    <div
-                        className="
+            >
+              {/* HEADER */}
+              <div
+                className="
                         flex
                         items-center
                         p-6
@@ -146,74 +137,81 @@ const Modal: React.FC<ModalProps> = ({
                         relative
                         border-b-[1px]
                         "
-                    
-                    >
-                        <button
-                        onClick={handleClose}
-                        className="
+              >
+                <button
+                  onClick={handleClose}
+                  className="
                         p-1
                         border-0
                         hover:opacity-70
                         transition
                         absolute
                         left-9
-                        ">
-                        <IoMdClose size={18} />
-
-                        </button>
-                        <div className="
+                        "
+                >
+                  <IoMdClose size={18} />
+                </button>
+                <div
+                  className="
                         text-lg
                         font-semibold
                         ml-2
-                        ">
-
-                            {title}
-                        </div>
-                    </div>
-                    {/* BODY */}
-                    <div className="
+                        "
+                >
+                  {title}
+                </div>
+              </div>
+              {/* BODY */}
+              <div
+                className="
                     relative
                     p-6
                     flex-auto
                     
-                    ">
-                        {body}
-                    </div>
-                    {/* FOOTER */}
-                    <div className="
+                    "
+              >
+                {body}
+              </div>
+              {/* FOOTER */}
+              <div
+                className="
                     flex
                     flex-col
                     p-6
                     gap-2
-                    ">
-                    <div className="
+                    "
+              >
+                <div
+                  className="
                     flex
                     flex-row
                     items-center
                     gap-4
                     w-full
-                    ">
-                    <Button label="this is button"/>
+                    "
+                >
+                  <Button
+                    label={actionLabel}
+                    disabled={disabled}
+                    onClick={handleSumbit}
+                  />
 
-                    </div>
-                    </div>
-
-
-                    </div>
-
-
-
-
+                  {secondaryAction && secondaryLabel && (
+                    <Button
+                      label={secondaryLabel}
+                      disabled={disabled}
+                      onClick={handleSecondaryAction}
+                      outline
+                    />
+                  )}
                 </div>
-
-
-
-
-                </div>
+              </div>
             </div>
-        </>
-    );
-
-}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Modal;
