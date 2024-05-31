@@ -99,6 +99,7 @@ const Modal: React.FC<ModalProps> = ({
                 "
         >
           {/* CONTENT */}
+
           <div
             className={`
                 translate
@@ -110,7 +111,7 @@ const Modal: React.FC<ModalProps> = ({
           >
             <div
               className="
-                    transalate
+                    translate
                     h-full
                     lg:h-auto
                     md:h-auto
@@ -127,6 +128,7 @@ const Modal: React.FC<ModalProps> = ({
                     "
             >
               {/* HEADER */}
+
               <div
                 className="
                         flex
